@@ -55,7 +55,7 @@ export class StabilizerECGeneric extends CutoutGenerator {
             const pointE = [new Decimal("-13").plus(generatorOptions.kerf).toNumber(), new Decimal("-7").minus(generatorOptions.kerf).toNumber()]
             const pointF = [new Decimal("-16").plus(generatorOptions.kerf).toNumber(), new Decimal("-5").minus(generatorOptions.kerf).toNumber()]
 
-            var singleCutout = {
+            let singleCutout = {
                 paths: {
                     line1: new makerjs.paths.Line(pointA, pointB),
                     line2: new makerjs.paths.Line(pointB, pointC),
@@ -100,7 +100,7 @@ export class StabilizerECGeneric extends CutoutGenerator {
             let lowerLeft =  [minsHalfWidth.plus(generatorOptions.kerf).toNumber(), lowerBound.plus(generatorOptions.kerf).toNumber()]
             let lowerRight = [plusHalfWidth.minus(generatorOptions.kerf).toNumber(), lowerBound.plus(generatorOptions.kerf).toNumber()]
 
-            var singleCutout = {
+            let singleCutout = {
                 paths: {
                     lineTop: new makerjs.paths.Line(upperLeft, upperRight),
                     lineBottom: new makerjs.paths.Line(lowerLeft, lowerRight),

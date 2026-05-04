@@ -10,12 +10,16 @@ import { SwitchOmronB3G } from './cutouts/SwitchOmronB3G'
 import { SwitchHiTek725 } from './cutouts/SwitchHiTek725'
 import { SwitchIRocks } from './cutouts/SwitchIRocks'
 import { SwitchFutabaMA } from './cutouts/SwitchFutabaMA'
+import { SwitchECGeneric } from './cutouts/SwitchECGeneric'
+import { SwitchECDynaCap } from './cutouts/SwitchECDynaCap'
 
 import { StabilizerMXBasic } from './cutouts/StabilizerMXBasic'
 import { StabilizerMXSmall } from './cutouts/StabilizerMXSmall'
 import { StabilizerMXSpec } from './cutouts/StabilizerMXSpec'
 import { StabilizerAlpsAEK } from './cutouts/StabilizerAlpsAEK'
 import { StabilizerAlpsAT101 } from './cutouts/StabilizerAlpsAT101'
+import { StabilizerECGeneric } from './cutouts/StabilizerECGeneric'
+import { StabilizerECDynaCap } from './cutouts/StabilizerDynaCap'
 import { NullGenerator } from './cutouts/NullGenerator'
 
 import { AcousticMXBasic } from './cutouts/AcousticMXBasic'
@@ -63,6 +67,13 @@ export function buildPlate(keysArray, generatorOptions) {
         case "futaba-ma":
             switchGenerator = new SwitchFutabaMA();
             break;
+        case "ec-generic":
+            switchGenerator = new SwitchECGeneric();
+            break;
+        case "ec-dynacap":
+            switchGenerator = new SwitchECDynaCap();
+            break;
+
         default:
             console.error("Unsupported switch type")
             return null
@@ -87,6 +98,12 @@ export function buildPlate(keysArray, generatorOptions) {
             break;
         case "none":
             stabilizerGenerator = new NullGenerator();
+            break;
+        case "ec-generic":
+            stabilizerGenerator = new StabilizerECGeneric();
+            break;
+        case "ec-dynacap":
+            stabilizerGenerator = new StabilizerECDynaCap();
             break;
         default:
             console.error("Unsupported stabilizer type")

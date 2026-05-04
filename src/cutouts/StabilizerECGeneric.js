@@ -86,29 +86,6 @@ export class StabilizerECGeneric extends CutoutGenerator {
                 }
             }
 
-            /*
-            // Adjusted for 7.05 edges (to fit switch)
-            const pathData = `M0,7.05
-              L11.927,7.05 A1.075,1.075 0 0 0 12.924,6.348 A0.861,0.929 0 0 1 13.785,5.767 L14.65,5.767 A1.425,1.425 0 0 0 16.075,4.342
-              L16.075,-3.258 A1.425,1.425 0 0 0 14.638,-4.683 L14.246,-4.683 A1.725,1.725 0 0 1 12.631,-5.803 A1.875,1.875 0 0 0 10.875,-7.05
-              L-10.875,-7.05 A1.875,1.875 0 0 0 -12.631,-5.803 A1.725,1.725 0 0 1 -14.246,-4.683 L-14.638,-4.683 A1.425,1.425 0 0 0 -16.075,-3.258
-              L-16.075,4.342 A1.425,1.425 0 0 0 -14.65,5.767 L-13.785,5.767 A0.861,0.929 0 0 1 -12.924,6.348 A1.075,1.075 0 0 0 -11.927,7.05
-              L0,7.05 Z`
-
-            const singleCutout = makerjs.model.mirror(makerjs.importer.fromSVGPathData(pathData), false, true)
-
-
-            singleCutout.paths = singleCutout.paths || {}
-            singleCutout.paths.circle1 = new makerjs.paths.Circle([16.40, -7.208], 1.0)
-            singleCutout.paths.circle2 = new makerjs.paths.Circle([-16.40, -7.208], 1.0)
-
-            const kerf = generatorOptions.kerf.toNumber()
-            cutouts = kerf !== 0
-                ? makerjs.model.outline(singleCutout, Math.abs(kerf), 0, kerf > 0)
-                : singleCutout
-
-            */
-
         } else {
 
             const width = new Decimal("13.6")

@@ -101,6 +101,13 @@ export function parseKle(kleText) {
 
     // The parsing bracket will be surrounded by a try-catch to expect malformed data
 
+    // If the parsed result is a flat array (not an array of arrays), it's a
+    // single-row KLE that was parsed directly rather than wrapped — e.g.
+    // [{a:7},""] parsed as [{a:7},""] instead of [[{a:7},""]]
+    if (Array.isArray(kleData) && kleData.length > 0 && !Array.isArray(kleData[0])) {
+        kleData = [kleData]
+    }
+
     try {
 
         // Begin parse

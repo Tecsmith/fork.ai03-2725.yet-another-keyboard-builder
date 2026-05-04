@@ -150,6 +150,8 @@ function App() {
                   <option value="hitek-725">Hi-Tek 725</option>
                   <option value="i-rocks">i-Rocks</option>
                   <option value="futaba-ma">Futaba MA</option>
+                  <option value="ec-generic">EC OEM/Generic</option>
+                  <option value="ec-dynacap">EC DynaCap</option>
 
                 </Form.Select>
                 <Form.Label>Stabilizer Cutout Type</Form.Label>
@@ -163,6 +165,8 @@ function App() {
                   <option value="mx-spec">Cherry MX Spec</option>
                   <option value="alps-aek">Alps AEK</option>
                   <option value="alps-at101">Alps AT101</option>
+                  <option value="ec-generic">EC OEM/Generic</option>
+                  <option value="ec-dynacap">EC DynaCap</option>
                   <option value="none">None</option>
 
                 </Form.Select>

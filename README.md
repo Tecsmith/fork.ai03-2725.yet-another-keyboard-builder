@@ -5,7 +5,7 @@ Yet another mechanical keyboard plate generator.
   
   
 ## Try it live
-Available [here](https://kbplate.ai03.me/)
+Available [here](https://kbplate.ai03.com)
   
   
 ## Features

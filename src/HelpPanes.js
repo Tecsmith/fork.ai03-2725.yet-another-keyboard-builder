@@ -3,7 +3,7 @@ export function DataHelpPane() {
     // _rs: Rotate stabilizers independently of the key (useful for bottom row stabs)
     // _rc: Rotate switch cutouts independently of the key
     // _ss: Shift stabilizers (Mainly for 6U off-center). false = Unshifted (default), true = Shifted
-    // _so: Skip automatic orientation fix 
+    // _so: Skip automatic orientation fix
     //      By default, the plategen will auto-rotate vertically tall switches so that they are treated as wide keys rotated 90deg
     //      Setting _so: true will skip this fix
 
@@ -81,7 +81,15 @@ export function SwitchCutoutPane() {
             <h4>Futaba MA</h4>
             <p>14 x 15 mm</p>
             <p>For Futaba MA mechanical switches.</p>
-            
+            <br />
+            <h4>EC OEM/Generic</h4>
+            <p>14.6 x 14 mm</p>
+            <p>For Topre-style, and compatible, EC switches.</p>
+            <br />
+            <h4>EC DynaCap</h4>
+            <p>14.7 x 14.1 mm, rounded 2.075 mm</p>
+            <p>For DynaCap EC switches.</p>
+
         </div>
     )
 }
@@ -108,6 +116,12 @@ export function OtherCutoutPane() {
             <br />
             <h4>Alps AT101</h4>
             <p>Alps-specific stabilizers for AT101 stabilizer sizes.</p>
+            <br />
+            <h4>EC OEM/Generic</h4>
+            <p>Topre-style, and compatible, EC stabilizer sizes.</p>
+            <br />
+            <h4>EC DynaCap</h4>
+            <p>DynaCap EC stabilizer sizes.</p>
             <br />
             <h2>Acoustic Cutout Types</h2>
             <br />

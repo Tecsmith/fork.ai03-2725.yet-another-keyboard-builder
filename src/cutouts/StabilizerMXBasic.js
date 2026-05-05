@@ -12,11 +12,11 @@ export class StabilizerMXBasic extends CutoutGenerator {
 
         if (!key.skipOrientationFix && key.height > key.width) {
             keySize = key.height
-        } 
+        }
 
         let stab_spacing_left = null
         let stab_spacing_right = null
-        
+
         if (keySize.gte(8)) {
             stab_spacing_left = stab_spacing_right = new Decimal("66.675")
         }
@@ -34,6 +34,12 @@ export class StabilizerMXBasic extends CutoutGenerator {
                 stab_spacing_left = stab_spacing_right = new Decimal("47.625")
             }
         }
+        else if (keySize.gte(4.5)) {
+            stab_spacing_left = stab_spacing_right = new Decimal("35")
+        }
+        else if (keySize.gte(4.25)) {
+            stab_spacing_left = stab_spacing_right = new Decimal("30")
+        }
         else if (keySize.gte(3)) {
             stab_spacing_left = stab_spacing_right = new Decimal("19.05")
         }
@@ -50,7 +56,7 @@ export class StabilizerMXBasic extends CutoutGenerator {
 
         const plusHalfWidth = width.dividedBy(new Decimal("2"))
         const minsHalfWidth = width.dividedBy(new Decimal("-2"))
-        
+
         let upperLeft =  [minsHalfWidth.plus(generatorOptions.kerf).toNumber(), upperBound.minus(generatorOptions.kerf).toNumber()]
         let upperRight = [plusHalfWidth.minus(generatorOptions.kerf).toNumber(), upperBound.minus(generatorOptions.kerf).toNumber()]
         let lowerLeft =  [minsHalfWidth.plus(generatorOptions.kerf).toNumber(), lowerBound.plus(generatorOptions.kerf).toNumber()]
@@ -73,7 +79,7 @@ export class StabilizerMXBasic extends CutoutGenerator {
             var filletTopRight = makerjs.path.fillet(singleCutout.paths.lineTop, singleCutout.paths.lineRight, filletNum)
             var filletBottomLeft = makerjs.path.fillet(singleCutout.paths.lineBottom, singleCutout.paths.lineLeft, filletNum)
             var filletBottomRight = makerjs.path.fillet(singleCutout.paths.lineBottom, singleCutout.paths.lineRight, filletNum)
-            
+
             singleCutout.paths.filletTopLeft = filletTopLeft;
             singleCutout.paths.filletTopRight = filletTopRight;
             singleCutout.paths.filletBottomLeft = filletBottomLeft;
@@ -96,8 +102,8 @@ export class StabilizerMXBasic extends CutoutGenerator {
 
         if (!key.skipOrientationFix && key.height > key.width) {
             cutouts = makerjs.model.rotate(cutouts, -90)
-        } 
-        
+        }
+
         return cutouts;
     }
 }

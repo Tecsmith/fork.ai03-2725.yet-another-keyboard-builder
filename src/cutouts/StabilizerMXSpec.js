@@ -34,6 +34,12 @@ export class StabilizerMXSpec extends CutoutGenerator {
                 stab_spacing_left = stab_spacing_right = new Decimal("47.625")
             }
         }
+        else if (keySize.gte(4.5)) {
+            stab_spacing_left = stab_spacing_right = new Decimal("35")
+        }
+        else if (keySize.gte(4.25)) {
+            stab_spacing_left = stab_spacing_right = new Decimal("30")
+        }
         else if (keySize.gte(3)) {
             stab_spacing_left = stab_spacing_right = new Decimal("19.05")
         }
@@ -58,6 +64,7 @@ export class StabilizerMXSpec extends CutoutGenerator {
         const pointJ = [new Decimal("-4.191").plus(generatorOptions.kerf).toNumber(), new Decimal("-0.508").plus(generatorOptions.kerf).toNumber()]
         const pointK = [new Decimal("-4.191").plus(generatorOptions.kerf).toNumber(), new Decimal("2.286").minus(generatorOptions.kerf).toNumber()]
         const pointL = [new Decimal("-3.3274").plus(generatorOptions.kerf).toNumber(), new Decimal("2.286").minus(generatorOptions.kerf).toNumber()]
+
 
         // The "entry point" for the bar horizontal cutout bit
         let pointW, pointXL, pointXR, pointYL, pointYR, pointZ;
@@ -112,27 +119,22 @@ export class StabilizerMXSpec extends CutoutGenerator {
         if (generatorOptions.stabilizerFilletRadius.gt(0)) {
 
             const filletNum = generatorOptions.stabilizerFilletRadius.toNumber()
-            const TOLERANCE = 0.002
-            const filletNum2a = new Decimal( Math.min(filletNum, (Math.abs(pointW[1] - pointB[1]) - TOLERANCE) - filletNum) ).toNumber()
-            const filletNum2d = new Decimal( Math.min(filletNum, (Math.abs(pointC[1] - pointZ[1]) - TOLERANCE) - filletNum) ).toNumber()
-            const filletNum4 = keySize.lte(3) ? new Decimal(Math.min(filletNum, (1.1684 - TOLERANCE) - filletNum)).toNumber() : filletNum;
-            const filletNum9 = keySize.lte(3) ? new Decimal(Math.min(filletNum, (0.8636 - TOLERANCE) - filletNum)).toNumber() : filletNum;
 
             for (let currCutout of [cutoutLeft, cutoutRight]) {
 
                 var fillet1 = makerjs.path.fillet(currCutout.paths.line1, currCutout.paths.line2a, filletNum)
-                var fillet1a = makerjs.path.fillet(currCutout.paths.line2a, currCutout.paths.line2b, filletNum2a)
-                var fillet1b = makerjs.path.fillet(currCutout.paths.line2c, currCutout.paths.line2d, filletNum2d)
+                var fillet1a = makerjs.path.fillet(currCutout.paths.line2a, currCutout.paths.line2b, filletNum)
+                var fillet1b = makerjs.path.fillet(currCutout.paths.line2c, currCutout.paths.line2d, filletNum)
                 var fillet2 = makerjs.path.fillet(currCutout.paths.line2d, currCutout.paths.line3, filletNum)
-                var fillet3 = makerjs.path.fillet(currCutout.paths.line3, currCutout.paths.line4, filletNum4)
+                var fillet3 = makerjs.path.fillet(currCutout.paths.line3, currCutout.paths.line4, filletNum)
                 var fillet4 = makerjs.path.fillet(currCutout.paths.line4, currCutout.paths.line5, filletNum)
                 var fillet5 = makerjs.path.fillet(currCutout.paths.line5, currCutout.paths.line6, filletNum)
-                var fillet6 = makerjs.path.fillet(currCutout.paths.line6, currCutout.paths.line7, filletNum4)
+                var fillet6 = makerjs.path.fillet(currCutout.paths.line6, currCutout.paths.line7, filletNum)
                 var fillet7 = makerjs.path.fillet(currCutout.paths.line7, currCutout.paths.line8, filletNum)
-                var fillet8 = makerjs.path.fillet(currCutout.paths.line8, currCutout.paths.line9, filletNum9)
+                var fillet8 = makerjs.path.fillet(currCutout.paths.line8, currCutout.paths.line9, filletNum)
                 var fillet9 = makerjs.path.fillet(currCutout.paths.line9, currCutout.paths.line10, filletNum)
                 var fillet10 = makerjs.path.fillet(currCutout.paths.line10, currCutout.paths.line11, filletNum)
-                var fillet11 = makerjs.path.fillet(currCutout.paths.line11, currCutout.paths.line12, filletNum9)
+                var fillet11 = makerjs.path.fillet(currCutout.paths.line11, currCutout.paths.line12, filletNum)
                 var fillet12 = makerjs.path.fillet(currCutout.paths.line12, currCutout.paths.line1, filletNum)
 
                 currCutout.paths.fillet1 = fillet1;
@@ -149,9 +151,11 @@ export class StabilizerMXSpec extends CutoutGenerator {
                 currCutout.paths.fillet10 = fillet10;
                 currCutout.paths.fillet11 = fillet11;
                 currCutout.paths.fillet12 = fillet12;
+
             }
 
         }
+
 
         cutoutLeft = makerjs.model.move(cutoutLeft, [stab_spacing_left.times(-1).toNumber(), 0])
         cutoutRight = makerjs.model.move(cutoutRight, [stab_spacing_right.toNumber(), 0])
